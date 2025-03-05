@@ -1,4 +1,4 @@
-function ipToHex(ip) {
+function toHex(ip) {
   if (!ip) return "";
 
   return ip
@@ -10,4 +10,4 @@ function ipToHex(ip) {
     .join(".");
 }
 
-export default ipToHex;
+export default toHex;
