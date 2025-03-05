@@ -3,8 +3,8 @@ import Input from "./Inputs";
 import Button from "./Button";
 import ResultsTable from "./ResultsTable";
 import subnetMaskOptions from "./arreyData";
-import ipToHex from './ConvertToHex';
-import ipToBin from './ConvertToBin';
+import toHex from './ConvertToHex';
+import toBin from './ConvertToBin';
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -12,11 +12,23 @@ function Calculator() {
   const [calculatedIp, setCalculatedIp] = useState("");
   const [hexIp, setHexIp] = useState("");
   const [binIp, setBinIp] = useState("");
+  const [bitMask, setBitMask] = useState("");
+  const [netMask, setNetMask] = useState("");
+  const [binMask, setBinMask] = useState("");
+  const [hexMask, setHexMask] = useState("");
 
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
-    setHexIp(ipToHex(ipAddress));
-    setBinIp(ipToBin(ipAddress));
+    setHexIp(toHex(ipAddress));
+    setBinIp(toBin(ipAddress));
+    setBinMask(toBin(subnetMask));
+    setHexMask(toHex(subnetMask));
+
+    const foundOption = subnetMaskOptions.find(option => option.value === subnetMask);
+    setBitMask(foundOption ? foundOption.label.replace("/", "") : "");
+    
+    const netMaskOption = subnetMaskOptions.find(option => option.value === subnetMask);
+    setNetMask(netMaskOption ? netMaskOption.value : "");
   };
 
   return (
@@ -54,7 +66,7 @@ function Calculator() {
         <Button text="Рассчитать" onClick={handleCalculate} />
       </div>
 
-      <ResultsTable ip={calculatedIp} hexIp={hexIp} binIp={binIp} />
+      <ResultsTable ip={calculatedIp} hexIp={hexIp} binIp={binIp} bitMask={bitMask} binMask={binMask} netMask={netMask} hexMask={hexMask} />
     </div>
   );
 }

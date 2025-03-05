@@ -1,6 +1,6 @@
 import React from "react";
 
-function ResultsTable({ ip, hexIp, binIp }) {
+function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask }) {
   return (
     <div className="results">
       <table>
@@ -20,15 +20,15 @@ function ResultsTable({ ip, hexIp, binIp }) {
           </tr>
           <tr>
             <td><strong>Bitmask:</strong></td>
-            <td></td>
+            <td>{bitMask}</td>
             <td></td>
             <td></td>
           </tr>
           <tr>
             <td><strong>Netmask:</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{netMask}</td>
+            <td>{hexMask}</td>
+            <td>{binMask}</td>
           </tr>
           <tr>
             <td><strong>Wildcard:</strong></td>
