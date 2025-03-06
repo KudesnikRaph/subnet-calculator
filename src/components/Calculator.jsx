@@ -10,6 +10,7 @@ import toNetworkAddress from "./toNetworkAddress";
 import toBroadcastAddress from "./toBroadCast";
 import toHostmin from "./toHostmin";
 import toHostmax from "./toHostmax";
+import toHosts from "./toHosts";
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -36,6 +37,7 @@ function Calculator() {
   const [hostmax, setHostmax] = useState("");
   const [hexHostmax, setHexHostmax] = useState("");
   const [binHostmax, setBinHostmax] = useState("");
+  const [hosts, setHosts] = useState("");
 
 
   const handleCalculate = () => {
@@ -76,7 +78,9 @@ function Calculator() {
     setHostmax(hostmaxAddress);
     setHexHostmax(toHex(hostmaxAddress));
     setBinHostmax(toBin(hostmaxAddress, bitMask));
-    
+
+    const hostCount = toHosts(subnetMask);
+    setHosts(hostCount);
   };
 
   return (
@@ -137,6 +141,7 @@ function Calculator() {
       hostmax={hostmax}
       hexHostmax={hexHostmax}
       binHostmax={binHostmax}
+      hosts={hosts}
       />
     </div>
   );

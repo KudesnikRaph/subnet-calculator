@@ -1,6 +1,6 @@
 import React from "react";
 
-function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask, wildCard, hexWild, binWild, networkAddress, binNetworkAddress, hexNetworkAddress, broadcast, hexBroadcast, binBroadcast, hostmin, hexHostmin, binHostmin, hostmax, hexHostmax, binHostmax }) {
+function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask, wildCard, hexWild, binWild, networkAddress, binNetworkAddress, hexNetworkAddress, broadcast, hexBroadcast, binBroadcast, hostmin, hexHostmin, binHostmin, hostmax, hexHostmax, binHostmax, hosts }) {
 
   const copyToClipboard = (text) => {
     if (text) {
@@ -77,7 +77,7 @@ function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask, wi
           </tr>
           <tr>
             <td><strong>Hosts:</strong></td>
-            <td onClick={() => copyToClipboard()}></td>
+            <td onClick={() => copyToClipboard(hosts)}>{hosts}</td>
             <td></td>
             <td></td>
           </tr>
