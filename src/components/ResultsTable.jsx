@@ -1,6 +1,21 @@
 import React from "react";
 
 function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask }) {
+
+  const copyToClipboard = (text) => {
+    if (text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          console.log('Скопировано: ' + text);
+        })
+        .catch(err => {
+          console.error('Ошибка при копировании: ', err);
+        });
+    } else {
+      alert('Нет данных для копирования');
+    }
+  };
+
   return (
     <div className="results">
       <table>
@@ -14,39 +29,39 @@ function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask }) 
           </tr>
           <tr>
             <td><strong>Адрес:</strong></td>
-            <td>{ip}</td>
-            <td>{hexIp}</td>
-            <td>{binIp}</td>
+            <td onClick={() => copyToClipboard(ip)}>{ip}</td>
+            <td onClick={() => copyToClipboard(hexIp)}>{hexIp}</td>
+            <td onClick={() => copyToClipboard(binIp)}>{binIp}</td>
           </tr>
           <tr>
             <td><strong>Bitmask:</strong></td>
-            <td>{bitMask}</td>
+            <td onClick={() => copyToClipboard(bitMask)}>{bitMask}</td>
             <td></td>
             <td></td>
           </tr>
           <tr>
             <td><strong>Netmask:</strong></td>
-            <td>{netMask}</td>
-            <td>{hexMask}</td>
-            <td>{binMask}</td>
+            <td onClick={() => copyToClipboard(netMask)}>{netMask}</td>
+            <td onClick={() => copyToClipboard(hexMask)}>{hexMask}</td>
+            <td onClick={() => copyToClipboard(binMask)}>{binMask}</td>
           </tr>
           <tr>
             <td><strong>Wildcard:</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
           </tr>
           <tr>
-            <td><strong>Network:</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onClick={() => copyToClipboard}><strong>Network:</strong></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
           </tr>
           <tr>
             <td><strong>Broadcast:</strong></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
+            <td onClick={() => copyToClipboard}></td>
           </tr>
           <tr>
             <td><strong>Hostmin:</strong></td>
