@@ -1,6 +1,29 @@
 import React from "react";
 
-function ResultsTable({ ip, hexIp, binIp, bitMask, netMask, binMask, hexMask, wildCard, hexWild, binWild, networkAddress, binNetworkAddress, hexNetworkAddress, broadcast, hexBroadcast, binBroadcast, hostmin, hexHostmin, binHostmin, hostmax, hexHostmax, binHostmax, hosts }) {
+function ResultsTable({ 
+    ip,
+    hexIp,
+    binIp, 
+    bitMask, 
+    netMask, 
+    binMask,
+    hexMask, 
+    wildCard, 
+    hexWild, 
+    binWild, 
+    networkAddress, 
+    binNetworkAddress, 
+    hexNetworkAddress, 
+    broadcast, 
+    hexBroadcast, 
+    binBroadcast, 
+    hostmin, 
+    hexHostmin, 
+    binHostmin, 
+    hostmax, 
+    hexHostmax, 
+    binHostmax, 
+    hosts }) {
 
   const copyToClipboard = (text) => {
     if (text) {
