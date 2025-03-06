@@ -20,12 +20,12 @@ function Calculator() {
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
     setHexIp(toHex(ipAddress));
-    setBinIp(toBin(ipAddress));
-    setBinMask(toBin(subnetMask));
-    setHexMask(toHex(subnetMask));
-
     const foundOption = subnetMaskOptions.find(option => option.value === subnetMask);
-    setBitMask(foundOption ? foundOption.label.replace("/", "") : "");
+    const bitMaskValue = foundOption ? parseInt(foundOption.label.replace("/", ""), 10) : 0;
+    setBitMask(bitMaskValue);
+    setBinIp(toBin(ipAddress, bitMaskValue));
+    setBinMask(toBin(subnetMask, bitMaskValue));
+    setHexMask(toHex(subnetMask));
     
     const netMaskOption = subnetMaskOptions.find(option => option.value === subnetMask);
     setNetMask(netMaskOption ? netMaskOption.value : "");
