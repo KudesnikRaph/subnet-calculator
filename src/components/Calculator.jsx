@@ -38,9 +38,31 @@ function Calculator() {
   const [hexHostmax, setHexHostmax] = useState("");
   const [binHostmax, setBinHostmax] = useState("");
   const [hosts, setHosts] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [shakeError, setShakeError] = useState(false);
 
+  const validateIp = (ip) => {
+    const ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    return ipRegex.test(ip);
+  };
+
+  const validateMask = (mask) => {
+    const maskRegex = /^(255|254|252|248|240|224|192|128|0)\.(255|254|252|248|240|224|192|128|0)\.(255|254|252|248|240|224|192|128|0)\.(255|254|252|248|240|224|192|128|0)$/;
+    return maskRegex.test(mask);
+  };
 
   const handleCalculate = () => {
+    if (!validateIp(ipAddress) || !validateMask(subnetMask)) {
+      setErrorMessage("Неверный IP-адрес или маска подсети!");
+      setShakeError(true);
+      setTimeout(() => {
+        setShakeError(false);
+      }, 500);
+      return;
+    }
+
+    setErrorMessage("");
+
     setCalculatedIp(ipAddress);
     setHexIp(toHex(ipAddress));
 
@@ -114,7 +136,9 @@ function Calculator() {
             ))}
           </select>
         </div>
-
+        
+        <p className={`error-message ${shakeError ? "shake" : ""}`}>{errorMessage}</p>
+        
         <Button text="Рассчитать" onClick={handleCalculate} />
       </div>
 
