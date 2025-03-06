@@ -1,12 +1,12 @@
-function toBin(ip) {
-  if(!ip) return "";
+function toBin(ip, maskBits = 0) {
+  if (!ip) return "";
 
-  return ip
+  const binaryIp = ip
     .split(".")
-    .map((num) => {
-      const bin = parseInt(num, 10).toString(2)
-      return bin.padStart(8, "0");
-    })
+    .map(num => parseInt(num, 10).toString(2).padStart(8, "0"))
     .join(".");
-  }
-  export default toBin;
+
+  return binaryIp.slice(0, maskBits) + " | " + binaryIp.slice(maskBits);
+}
+
+export default toBin;
