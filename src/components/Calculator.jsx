@@ -8,6 +8,7 @@ import toBin from './ConvertToBin';
 import toWildcard from "./toWildCard";
 import toNetworkAddress from "./toNetworkAddress";
 import toBroadcastAddress from "./toBroadCast";
+import toHostmin from "./toHostmin";
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -28,6 +29,9 @@ function Calculator() {
   const [broadcast, setBroadcast] = useState("");
   const [hexBroadcast, setHexBroadcast] = useState("");
   const [binBroadcast, setBinBroadcast] = useState("");
+  const [hostmin, setHostmin] = useState("");
+  const [hexHostmin, setHexHostmin] = useState("");
+  const [binHostmin, setBinHostmin] = useState("");
 
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
@@ -57,6 +61,11 @@ function Calculator() {
     setBroadcast(broadcast);
     setHexBroadcast(toHex(broadcast));
     setBinBroadcast(toBin(broadcast, bitMask));
+
+    const hostminAddress = toHostmin(network);
+    setHostmin(hostminAddress);
+    setHexHostmin(toHex(hostminAddress));
+    setBinHostmin(toBin(hostminAddress, bitMask));
   };
 
   return (
@@ -111,6 +120,9 @@ function Calculator() {
       broadcast={broadcast}
       hexBroadcast={hexBroadcast}
       binBroadcast={binBroadcast}
+      hostmin={hostmin}
+      hexHostmin={hexHostmin}
+      binHostmin={binHostmin}
       />
     </div>
   );
