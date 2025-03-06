@@ -9,6 +9,7 @@ import toWildcard from "./toWildCard";
 import toNetworkAddress from "./toNetworkAddress";
 import toBroadcastAddress from "./toBroadCast";
 import toHostmin from "./toHostmin";
+import toHostmax from "./toHostmax";
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -32,6 +33,10 @@ function Calculator() {
   const [hostmin, setHostmin] = useState("");
   const [hexHostmin, setHexHostmin] = useState("");
   const [binHostmin, setBinHostmin] = useState("");
+  const [hostmax, setHostmax] = useState("");
+  const [hexHostmax, setHexHostmax] = useState("");
+  const [binHostmax, setBinHostmax] = useState("");
+
 
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
@@ -66,6 +71,12 @@ function Calculator() {
     setHostmin(hostminAddress);
     setHexHostmin(toHex(hostminAddress));
     setBinHostmin(toBin(hostminAddress, bitMask));
+
+    const hostmaxAddress = toHostmax(broadcast);
+    setHostmax(hostmaxAddress);
+    setHexHostmax(toHex(hostmaxAddress));
+    setBinHostmax(toBin(hostmaxAddress, bitMask));
+    
   };
 
   return (
@@ -123,6 +134,9 @@ function Calculator() {
       hostmin={hostmin}
       hexHostmin={hexHostmin}
       binHostmin={binHostmin}
+      hostmax={hostmax}
+      hexHostmax={hexHostmax}
+      binHostmax={binHostmax}
       />
     </div>
   );
