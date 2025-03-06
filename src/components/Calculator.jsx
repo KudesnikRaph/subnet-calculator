@@ -7,6 +7,7 @@ import toHex from './ConvertToHex';
 import toBin from './ConvertToBin';
 import toWildcard from "./toWildCard";
 import toNetworkAddress from "./toNetworkAddress";
+import toBroadcastAddress from "./toBroadCast";
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -24,6 +25,9 @@ function Calculator() {
   const [networkAddress, setNetworkAddress] = useState("");
   const [hexNetworkAddress, setHexNetworkAddress] = useState("");
   const [binNetworkAddress, setBinNetworkAddress] = useState("");
+  const [broadcast, setBroadcast] = useState("");
+  const [hexBroadcast, setHexBroadcast] = useState("");
+  const [binBroadcast, setBinBroadcast] = useState("");
 
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
@@ -39,9 +43,6 @@ function Calculator() {
     const netMaskOption = subnetMaskOptions.find(option => option.value === subnetMask);
     setNetMask(netMaskOption ? netMaskOption.value : "");
     const wildCardMask = toWildcard(subnetMask);
-    console.log("Subnet Mask:", subnetMask);
-    console.log("Calculated Wildcard:", wildCardMask);
-    console.log("Binary Wildcard:", toBin(wildCardMask, bitMask));
 
     setWildCard(wildCardMask);
     setHexWild(toHex(wildCardMask));
@@ -51,6 +52,11 @@ function Calculator() {
     setNetworkAddress(network);
     setHexNetworkAddress(toHex(network));
     setBinNetworkAddress(toBin(network, bitMask));
+
+    const broadcast = toBroadcastAddress(network, wildCardMask);
+    setBroadcast(broadcast);
+    setHexBroadcast(toHex(broadcast));
+    setBinBroadcast(toBin(broadcast, bitMask));
   };
 
   return (
@@ -102,6 +108,9 @@ function Calculator() {
       networkAddress={networkAddress}
       hexNetworkAddress={hexNetworkAddress}
       binNetworkAddress={binNetworkAddress}
+      broadcast={broadcast}
+      hexBroadcast={hexBroadcast}
+      binBroadcast={binBroadcast}
       />
     </div>
   );
