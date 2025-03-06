@@ -3,9 +3,9 @@ function toHex(ip) {
 
   return ip
     .split(".") 
-    .map((octet) => {
+    .map(octet => {
       const hex = parseInt(octet, 10).toString(16).toUpperCase();
-      return hex.padStart(2, "0");
+      return hex.length === 1 ? "0" + hex : hex; 
     })
     .join(".");
 }
