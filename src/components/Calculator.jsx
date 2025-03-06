@@ -6,6 +6,7 @@ import subnetMaskOptions from "./arreyData";
 import toHex from './ConvertToHex';
 import toBin from './ConvertToBin';
 import toWildcard from "./toWildCard";
+import toNetworkAddress from "./toNetworkAddress";
 
 function Calculator() {
   const [ipAddress, setIpAddress] = useState("");
@@ -20,6 +21,9 @@ function Calculator() {
   const [wildCard, setWildCard] = useState("");
   const [hexWild, setHexWild] = useState("");
   const [binWild, setBinWild] = useState("");
+  const [networkAddress, setNetworkAddress] = useState("");
+  const [hexNetworkAddress, setHexNetworkAddress] = useState("");
+  const [binNetworkAddress, setBinNetworkAddress] = useState("");
 
   const handleCalculate = () => {
     setCalculatedIp(ipAddress);
@@ -42,6 +46,11 @@ function Calculator() {
     setWildCard(wildCardMask);
     setHexWild(toHex(wildCardMask));
     setBinWild(toBin(wildCardMask, bitMask));
+
+    const network = toNetworkAddress(ipAddress, subnetMask);
+    setNetworkAddress(network);
+    setHexNetworkAddress(toHex(network));
+    setBinNetworkAddress(toBin(network, bitMask));
   };
 
   return (
@@ -79,7 +88,21 @@ function Calculator() {
         <Button text="Рассчитать" onClick={handleCalculate} />
       </div>
 
-      <ResultsTable ip={calculatedIp} hexIp={hexIp} binIp={binIp} bitMask={bitMask} binMask={binMask} netMask={netMask} hexMask={hexMask} wildCard={wildCard} hexWild={hexWild} binWild={binWild} />
+      <ResultsTable 
+      ip={calculatedIp} 
+      hexIp={hexIp} 
+      binIp={binIp} 
+      bitMask={bitMask} 
+      binMask={binMask} 
+      netMask={netMask} 
+      hexMask={hexMask} 
+      wildCard={wildCard} 
+      hexWild={hexWild} 
+      binWild={binWild} 
+      networkAddress={networkAddress}
+      hexNetworkAddress={hexNetworkAddress}
+      binNetworkAddress={binNetworkAddress}
+      />
     </div>
   );
 }
